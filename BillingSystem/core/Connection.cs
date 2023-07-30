@@ -159,7 +159,7 @@ namespace BillingSystem.core
 
             // Create the message
             //message.Destination = new Queue("#DEAD_MSG_QUEUE", false, true);
-            message.Destination = ContextFactory.Instance.CreateTopic("topic/DMQ");
+            message.Destination = ContextFactory.Instance.CreateTopic(BaseSessionProperty.AppSettings.TopicNameDMQ);
             message.DMQEligible = false;
             message.DeliveryMode = MessageDeliveryMode.Persistent;
 

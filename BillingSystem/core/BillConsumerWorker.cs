@@ -7,20 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace BillingSystem.core
 {
 
     public class BillConsumerWorker : MessageListener
     {
-        private readonly IHostApplicationLifetime _hostApplicationLifetime;
-        private readonly ILogger<BillConsumerWorker> _logger;
-
-        public BillConsumerWorker(IHostApplicationLifetime hostApplicationLifetime, ILogger<BillConsumerWorker> logger)
-        {
-            // this._hostApplicationLifetime = hostApplicationLifetime ?? throw new ArgumentNullException(nameof(hostApplicationLifetime));
-            // _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-
+        
+        AppSettings appSettings = new AppSettings();
+        public BillConsumerWorker()
+        {       
             SETUP();
         }
 
@@ -31,15 +28,37 @@ namespace BillingSystem.core
         }
 
         public BaseSessionProperty LoadSessionProperties() {
-            BaseSessionProperty sessionProperties = new BaseSessionProperty("app-demo", "appdemo", "default", "localhost");
-            
+            string currentDir = System.IO.Directory.GetCurrentDirectory();
+            Console.WriteLine("Current directory {0}", currentDir);
+            string fileSettings = currentDir + "\\Properties\\appsettings.json";
+            IConfigurationRoot config = new ConfigurationBuilder()
+                .AddJsonFile(fileSettings)
+                .AddEnvironmentVariables()
+                .Build();
+
+            // Get values from the config given their key and their target type.
+            //Settings settings = config.GetRequiredSection("Settings").Get<Settings>();
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            appSettings = config.GetRequiredSection("Settings").Get<AppSettings>();
+            ;
+            if (appSettings == null)
+            {
+                // Write the values to the console.
+                throw new ApplicationException("Could not load AppSettings");
+            }
+           
+
+            Console.WriteLine("App settings Username: {0}", appSettings.BrokerUserName);
+            BaseSessionProperty sessionProperties = new BaseSessionProperty(appSettings.BrokerUserName, appSettings.BrokerPassword, appSettings.BrokerVPNName, appSettings.Host, appSettings);
+           
+                       
             return sessionProperties;
         }
 
 
         public Queue DefineQueue()
         {
-            Queue queue = new Queue("Q/tutorial", false, true);
+            Queue queue = new Queue(appSettings.QueueNameDemo, false, true);
             return queue;
         }
 
@@ -55,7 +74,7 @@ namespace BillingSystem.core
         public static void Main(string[] args)
         {
             Console.WriteLine("Main line");
-            BillConsumerWorker worker = new BillConsumerWorker(null, null);
+            BillConsumerWorker worker = new BillConsumerWorker();
             worker.SETUP();
         }
 
