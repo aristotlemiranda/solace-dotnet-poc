@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BillingSystem": {
+      "commandName": "Project",
+      "commandLineArgs": "STOP"
+    }
+  }
+}

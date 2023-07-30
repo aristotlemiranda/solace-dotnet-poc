@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingSystem", "BillingSystem.csproj", "{E8E21650-282D-469D-93E3-3D35C16A1E28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingSystem.Engine", "..\BillingSystem.Engine\BillingSystem.Engine.csproj", "{B58AE548-B6DB-4228-80D3-B6D8C9500657}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F054F95A-975F-4224-A0D0-1E20AECD32C9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8E21650-282D-469D-93E3-3D35C16A1E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E21650-282D-469D-93E3-3D35C16A1E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E21650-282D-469D-93E3-3D35C16A1E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E21650-282D-469D-93E3-3D35C16A1E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B58AE548-B6DB-4228-80D3-B6D8C9500657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58AE548-B6DB-4228-80D3-B6D8C9500657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58AE548-B6DB-4228-80D3-B6D8C9500657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58AE548-B6DB-4228-80D3-B6D8C9500657}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A84F76B-50F6-4663-8E00-6DA0FC492AD1}
+	EndGlobalSection
+EndGlobal
